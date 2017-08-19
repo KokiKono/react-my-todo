@@ -27,7 +27,7 @@ export default class ToDoInput extends React.Component{
         value={this.state.text}
         onChange={(event,newValue)=>{
           this.setState({
-            text:newValue
+            text:event.target.value
           })
         }}
         onKeyDown={(e)=>{

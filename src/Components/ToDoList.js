@@ -1,12 +1,17 @@
 'use strict';
 
 import React from 'react';
-import {
-  List,
-  ListItem
+import { withStyles } from 'material-ui/styles';
+import List,{
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  ListItemSecondaryAction
 } from 'material-ui/List';
+import IconButton from 'material-ui/IconButton';
+import DeleteIcon from 'material-ui-icons/Delete';
 
-export default class ToDoList extends React.Component{
+class ToDoList extends React.Component{
 
   render(){
     return(
@@ -17,14 +22,25 @@ export default class ToDoList extends React.Component{
   }
 
   renderToDoItem(todos){
-    console.log(todos);
     return todos?todos.map((item,index,array)=>{
       return (
         <ListItem
-          primaryText={`${item.text}`}
-          secondaryText="Always interrupt"
-        />
+          button
+          onClick={()=>{
+            this.props.onClickItem(item);
+          }} >
+          <ListItemText primary={`${item.text}`} />
+          <ListItemSecondaryAction>
+            <IconButton
+              onClick={()=>{
+                this.props.handleDelete(item);
+              }}>
+              <DeleteIcon/>
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
       )
     }):null;
   }
 }
+export default withStyles(null)(ToDoList);

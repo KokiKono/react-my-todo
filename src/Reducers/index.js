@@ -1,7 +1,9 @@
-import { combineReducers } from 'redux'
-import todos from './todos'
-const rootReducer = combineReducers({
-  todos
-})
+import todos from './todos';
+import actionToDo from './ActionToDo';
 
-export default rootReducer
+const reducers = {
+  todos:todos,
+  actionToDo:actionToDo
+};
+
+export default reducers;

@@ -1,32 +1,34 @@
 import React, { Component } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import ToDoInput from './Components/ToDoInput';
-import ToDoList from './Components/ToDoList';
-
 import * as TodoActions from './Actions';
+import MainSection from './Containers/MainSection/';
+import Header from './Containers/Header/';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      isOpen:false
+    }
+  }
   render(){
     return(
       <MuiThemeProvider>
         <div>
-          <AppBar
-            title="Title"/>
-          <ToDoInput
-            onSave={this.props.actions.addTodo}/>
-          <ToDoList
-            todos={this.props.todos}/>
-          </div>
+          <Header/>
+          <MainSection
+            {...this.props}/>
+        </div>
       </MuiThemeProvider>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  todos:state.todos
+  todos:state.todos,
+  actionToDo:state.actionToDo
 });
 
 const mapDispatchToProps = dispatch =>({
