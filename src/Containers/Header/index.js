@@ -6,6 +6,8 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import { Link } from 'react-router-dom'
+
 
 const styles = theme => ({
   root: {
@@ -20,7 +22,6 @@ const styles = theme => ({
 class Header extends React.Component{
   render(){
     const classes = this.props.classes;
-    console.log(this);
     return(
         <AppBar position="static">
           <Toolbar>
@@ -28,7 +29,9 @@ class Header extends React.Component{
               <MenuIcon />
             </IconButton>
             <Typography type="title" color="inherit" className={classes.flex}>
+              <Link to='/'>
               React ToDo
+              </Link>
             </Typography>
           </Toolbar>
         </AppBar>
