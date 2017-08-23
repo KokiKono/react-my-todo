@@ -1,9 +1,9 @@
-import todos from './todos';
 import actionToDo from './ActionToDo';
+import todos from './Todos';
 
 const reducers = {
-  todos:todos,
-  actionToDo:actionToDo
+  todos,
+  actionToDo,
 };
 
 export default reducers;
