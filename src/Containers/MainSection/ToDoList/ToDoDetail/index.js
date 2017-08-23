@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Detail from '../../../../Components/ToDoDetail';
 
-class ToDoDetailSection extends React.Component{
-  render(){
-    const { match,todos } = this.props;
-    const todo = todos.find(item=>item.id == match.params.id);
-    return(
-      <Detail todo={todo} handleGoBack={()=>{this.props.history.goBack()}}/>
-    )
-  }
+function ToDoDetailSection({ match, todos, history }) {
+  const todo = todos.find(item => item.id === Number(match.params.id));
+
+  return (
+    <Detail todo={todo} handleGoBack={() => { history.goBack(); }} />
+  );
 }
 
+ToDoDetailSection.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }),
+  todos: PropTypes.arrayOf(PropTypes.object),
+  history: PropTypes.shape({
+    goBack: PropTypes.func,
+  }),
+};
+
+ToDoDetailSection.defaultProps = {
+  match: null,
+  todos: null,
+  history: null,
+};
+
 const mapStateToProps = state => ({
-  todos:state.todos
+  todos: state.todos,
 });
 
-export default withRouter(connect(mapStateToProps,null)(ToDoDetailSection));
+export default withRouter(connect(mapStateToProps, null)(ToDoDetailSection));

@@ -75,9 +75,7 @@ ToDoListSection.propTypes = {
   match: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }),
-  todos: PropTypes.shape({
-    text: PropTypes.string,
-  }),
+  todos: PropTypes.arrayOf(PropTypes.object),
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
@@ -92,9 +90,7 @@ ToDoListSection.propTypes = {
 
 ToDoListSection.defaultProps = {
   match: null,
-  todos: {
-    text: '',
-  },
+  todos: null,
   history: null,
   actionToDo: null,
   actions: null,
